@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContact } from 'redux/selectors';
+import { addContact } from 'redux/ContactsOperations';
+import { selectContact } from 'redux/AuthSelectors';
 import * as Yup from 'yup';
 import { FormField, Form, ErrorMessage, SubmitBtn } from './ContactForm.styled';
 
