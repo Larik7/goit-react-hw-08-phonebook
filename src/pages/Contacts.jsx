@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts/operations';
-import { selectIsLoading, selectError } from 'redux/contacts/selectors';
-import { ContactsForm } from 'components/ContactForm/ContactForm';
+import { fetchContacts } from 'redux/ContactsOperations';
+import { selectIsLoading, selectError } from 'redux/ContactsSelectors';
+import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Filter } from 'components/Filter/Filter';
 import { Loader } from 'components/Loader/Loader';
-import { ContactsList } from 'components/ContactList/ContactList';
+import { ContactList } from 'components/ContactList/ContactList';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { TitleReg } from 'components/RegisterForm/RegisterForm.styled';
 import { TitleContact } from 'components/Filter/Filter.styled';
@@ -28,12 +28,12 @@ const Contacts = () => {
                 <title>Contacts</title>
             </Helmet>
             <TitleReg>Please enter your details to add a contact</TitleReg>
-            <ContactsForm />
+            <ContactForm />
             <TitleContact>Contacts</TitleContact>
             <Filter />
             {isLoading ? <Loader />
                 : error ? <p>{error}</p>
-                    : <ContactsList />}
+                    : <ContactList />}
         </HelmetProvider>
 
     )

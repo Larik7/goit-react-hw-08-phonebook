@@ -1,19 +1,19 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { useSelector } from 'react-redux';
-import { List, ListItem } from './ContactList.styled';
-import { selectVisibleContacts } from 'redux/AuthSelectors';
+import { ItemStyled, ListStyled } from './ContactList.styled';
+import { selectVisibleContacts } from 'redux/ContactsSelectors';
 
 export const ContactList = () => {
   
   const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
-    <List>
+    <ListStyled>
       {visibleContacts.map(contact => (
-        <ListItem key={contact.id}>
+        <ItemStyled key={contact.id}>
           <ContactItem contact={contact} />
-        </ListItem>
+        </ItemStyled>
       ))}
-    </List>
+    </ListStyled>
   );
 };

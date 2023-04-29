@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { Formik, Field } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/ContactsOperations';
-import { selectContact } from 'redux/AuthSelectors';
+import { selectContacts } from 'redux/ContactsSelectors';
 import * as Yup from 'yup';
-import { FormField, Form, ErrorMessage, SubmitBtn } from './ContactForm.styled';
+import { FormField, Form, ErrorMessage, InputContact } from './ContactForm.styled';
+import { Button } from '@mui/material';
 
 const ContactShema = Yup.object().shape({
   name: Yup.string()
@@ -18,7 +19,7 @@ const ContactShema = Yup.object().shape({
 });
 
 export const ContactForm = () => {
-  const contacts = useSelector(selectContact);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
@@ -43,18 +44,16 @@ export const ContactForm = () => {
     >
       <Form>
         <FormField>
-          Name
-          <Field name="name" />
+          <span>Name</span>
+          <InputContact name="name" />
           <ErrorMessage name="name" component="span" />
         </FormField>
         <FormField>
-          Number
-          <Field name="number" type="tel" />
+          <span>Number</span>
+          <InputContact name="number" type="tel" format="(###) ###-##-##"/>
           <ErrorMessage name="number" component="span" />
         </FormField>
-        <SubmitBtn type="submit" onSubmit={onSubmit}>
-          <span>Add contact</span>
-        </SubmitBtn>
+        <Button variant="contained" type="submit">Add contact</Button>
       </Form>
     </Formik>
   );
